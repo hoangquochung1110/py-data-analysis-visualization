@@ -4,3 +4,4 @@ The file contains information about the candidate, the donor's city, state, zip 
 as well as the amount donated. In addition it contains the date of the donation,
 
 
+# View the names of each fields
