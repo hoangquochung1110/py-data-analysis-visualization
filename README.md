@@ -19,7 +19,8 @@ Open terminal, unzip the file and rename it to something meaningful.
 The dataset is relatively large, processing the whole dataset takes a lot of time. It should be sampled and try things out on a smaller dataset before doing the full dataset analysis.  The following is a script that samples
 the donations.txt. The following script prints 1 out of 1000 donations:
 
-```import sys
+```
+import sys
 with file(sys.argv[1], 'r') as f:
  i = 0
  for line in f:
@@ -78,7 +79,9 @@ l and calls f to extract the key to use for comparison.
 3. zip(*pairs) then unzips the list of pairs into two lists.
 
 ![image](https://user-images.githubusercontent.com/40592382/54732892-e63fe400-4bc8-11e9-900a-bd5cf1f6ae4e.png)
-Visited wikipedia and just found some key interesting facts:
+
+Visited wikipedia and just found some key interesting facts
+
 It can be seen that Obama's donations outnumbered McCain's, especially the period of time around the end of 2008. A further detailed look shows that there are two spike in the plot, in August 2008 and October 2008.
 In August that year, Democratic National Convention took place and the Democratic Party nominated Barack Obama as their presidential candidate.
 In October, Obama and McCain had their second and third presidential debate. In additons, Obama's 30-minute presidential campaign advertising was broadcast in prime-time over several networks
