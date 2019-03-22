@@ -1,4 +1,3 @@
-
 import csv
 import numpy
 import matplotlib.pyplot as plt
@@ -55,7 +54,7 @@ def cleaning_measures(cols):
 
 def get_arrs():
     ypll = redefine_cleaning_ypll(dependent_cols)
-    measures = cleaning_AM(independent_cols)
+    measures = cleaning_measures(independent_cols)
 
     ypll_arr = []
     measures_arr = []
@@ -79,7 +78,6 @@ subplot.scatter(measures_arr[:,8], ypll_arr, color='#2072DD')
 subplot.set_title('ypll vs. % of population without physical activities')
 
 subplot = fig.add_subplot(313)
-#subplot.scatter(measures_arr[:,10], ypll_arr, color='#629BE5')
 subplot.scatter(measures_arr[:,12], ypll_arr,color='#629BE5' )
 subplot.set_title('ypll vs. % of population having free lunch')
 
@@ -87,10 +85,7 @@ subplot.set_title('ypll vs. % of population having free lunch')
 
 plt.show()
 
-
 exit()
-
-
 
 
 
