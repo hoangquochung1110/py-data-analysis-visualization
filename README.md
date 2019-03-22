@@ -17,4 +17,39 @@ A few notes on data cleaning
 3. In addtional_measures_cleaned.csv, some of rows don't contain value for some of the additional measures, for example, Broomfield, Colorado doesn't specify the percentage of illiterate child to the total population. These rows should be filter.
 In addtional, there is a row per state that summaries  the state's statistics. It has an empty value for 'county' column and should be also filtered as we'll do county-by-county analysis.
 
-The script named 
+The following piece of code performs data cleaning in ypll.csv and addtional_measures_cleaned.csv
+```
+import csv
+import numpy
+import matplotlib.pyplot as plt
+
+independent_cols = ["Population", "< 18", "65 and over", "African American","Female", "Rural", "%Diabetes" , "HIV rate","Physical Inactivity" , "mental health provider rate","median household income", "% high housing costs","% Free lunch", "% child Illiteracy", "% Drive Alone"]
+
+def bad_cleaning_ypll():
+    reader = csv.DictReader(open('ypll.csv', 'r'))
+    row = {}
+    for line in reader:
+        L = []
+        if line['Unreliable'] == 'x':
+            continue   
+        if line['County'] == '':
+            continue
+        rname = '%s__%s' % (line['State'], line['County'])
+        try:
+            L.append(float(line['YPLL Rate']))
+            row[rname] = L
+        except:
+            pass
+    return row
+  def bad_cleaning_measures(cols):
+        reader = csv.DictReader(open('additional_measures_cleaned.csv', 'r'))
+        row = {}
+        for line in reader:
+            if line['County'] == '':
+                continue
+            rname = '%s__%s' % (line['State'], line['County'])
+            try:
+                row[rname] = [float(line[col]) for col in cols ]
+            except:
+                pass
+        return row
