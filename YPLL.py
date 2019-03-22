@@ -5,56 +5,24 @@ import matplotlib.pyplot as plt
 independent_cols = ["Population", "< 18", "65 and over", "African American","Female", "Rural", "%Diabetes" , "HIV rate","Physical Inactivity" , "mental health provider rate","median household income", "% high housing costs","% Free lunch", "% child Illiteracy", "% Drive Alone"]
 dependent_cols = ["YPLL Rate"]
 
-
-def cleaning_ypll():
-    reader = csv.DictReader(open('ypll.csv', 'r'))
-    row = {}
+def read_csv(filename, cols, Unreliable):
+    reader = csv.DictReader(open(filename, 'r'))
+    rows = {}
     for line in reader:
-        L = []
-        if line['Unreliable'] == 'x':
-            continue   
+        if Unreliable and line['Unreliable'] == 'x':
+            continue
         if line['County'] == '':
             continue
         rname = '%s__%s' % (line['State'], line['County'])
         try:
-            L.append(float(line['YPLL Rate']))
-            row[rname] = L
+            rows[rname] = [float(line[col]) for col in cols]
         except:
             pass
-    return row
-
-def redefine_cleaning_ypll(cols):
-    reader = csv.DictReader(open('ypll.csv', 'r'))
-    row = {}
-    for line in reader:
-        if line['Unreliable'] == 'x':
-            continue   
-        if line['County'] == '':
-            continue
-        rname = '%s__%s' % (line['State'], line['County'])
-        try:
-            row[rname] = [float(line[col]) for col in cols]
-        except:
-            pass
-    return row
-
-def cleaning_measures(cols):
-        reader = csv.DictReader(open('additional_measures_cleaned.csv', 'r'))
-        row = {}
-        for line in reader:
-            if line['County'] == '':
-                continue
-            rname = '%s__%s' % (line['State'], line['County'])
-            try:
-                row[rname] = [float(line[col]) for col in cols ]
-            except:
-                pass
-        return row
-
+    return rows
 
 def get_arrs():
-    ypll = redefine_cleaning_ypll(dependent_cols)
-    measures = cleaning_measures(independent_cols)
+    ypll = read_csv('ypll.csv', dependent_cols, True)
+    measures = read_csv('additional_measures_cleaned.csv', independent_cols, False)
 
     ypll_arr = []
     measures_arr = []
@@ -84,9 +52,8 @@ subplot.set_title('ypll vs. % of population having free lunch')
 
 
 plt.show()
+#plt.savefig('temp/figure1.png', format='png')
 
 exit()
-
-
 
 
