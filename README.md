@@ -18,3 +18,7 @@ A few notes on data cleaning
 In addtional, there is a row per state that summaries  the state's statistics. It has an empty value for 'county' column and should be also filtered as we'll do county-by-county analysis.
 
 ## Plotting data
+We take three measures (as below) to see whether there was any correlation bewteen YPLL rate and them.
+The result is quite distinct. In the first plot, when the percentage of population in a county with diabetes is higher, so is the YPLL rate. This trend also applies to two next plots.
+
+![health_ranking](https://user-images.githubusercontent.com/40592382/54861093-254f7000-4d56-11e9-8119-920ae03cba44.png)
